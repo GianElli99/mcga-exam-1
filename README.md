@@ -33,9 +33,9 @@ npm start
 
 #### Response
 
-## Status codes
-
 ## Failed requests response
+
+## Status codes
 
 | Status Code | Description             |
 | :---------- | :---------------------- |
