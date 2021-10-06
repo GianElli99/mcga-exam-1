@@ -3,14 +3,35 @@ const { request, response } = require('express');
 
 const getProducts = async (req = request, res = response) => {
   try {
-    res.json('GET PRODUCTS');
-  } catch (error) {}
+    const { name, isDigital } = req.query;
+
+    let filterConditions = {};
+    if (name) {
+      const regex = new RegExp(name, 'i');
+      filterConditions.name = { $regex: regex };
+    }
+    if (isDigital === true || isDigital === false) {
+      filterConditions.isDigital = isDigital;
+    }
+    const products = await Product.find(filterConditions);
+    res.send(products);
+  } catch (error) {
+    res.status(500).json({ error: 'An internal server error ocurred.' });
+  }
 };
 
 const getProductById = async (req = request, res = response) => {
   try {
-    res.json('GET PRODUCT BY ID');
-  } catch (error) {}
+    const { productId } = req.params;
+    const product = await Product.findById(productId);
+    if (product) {
+      res.json(tecnico);
+    } else {
+      res.status(404).json({ error: 'Resource not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'An internal server error ocurred.' });
+  }
 };
 
 const addProduct = async (req = request, res = response) => {
@@ -60,8 +81,16 @@ const modifyProduct = async (req = request, res = response) => {
 
 const deleteProduct = async (req = request, res = response) => {
   try {
-    res.json('DELETE PRODUCT');
-  } catch (error) {}
+    const { productId } = req.params;
+    const product = await Product.findOneAndDelete(productId);
+    if (product) {
+      res.json(tecnico);
+    } else {
+      res.status(404).json({ error: 'Resource not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'An internal server error ocurred.' });
+  }
 };
 
 module.exports = {
