@@ -11,6 +11,7 @@ const {
   deleteProduct,
 } = require('../controllers/products.controller');
 const convertStringIntoBool = require('../helpers/convertStringIntoBool');
+const productsValidationChain = require('../helpers/productsValidationChain');
 
 const router = Router();
 
@@ -32,12 +33,13 @@ router.get(
   getProductById,
 );
 
-router.post('/', [validateFields], addProduct);
+router.post('/', [...productsValidationChain(), validateFields], addProduct);
 
 router.put(
   '/:productId',
   [
     param('productId').isMongoId().withMessage('Invalid product ID'),
+    ...productsValidationChain(),
     validateFields,
   ],
   modifyProduct,

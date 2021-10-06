@@ -37,6 +37,9 @@ const getProductById = async (req = request, res = response) => {
 const addProduct = async (req = request, res = response) => {
   try {
     const product = new Product(req.body);
+    if (product.isDigital) {
+      product.weightInKg = undefined;
+    }
 
     const nameAlreadyUsed = await Product.findOne({ name: product.name });
     if (nameAlreadyUsed) {
@@ -65,6 +68,9 @@ const modifyProduct = async (req = request, res = response) => {
       return res.status(400).json({
         error: 'A product with the same name already exists.',
       });
+    }
+    if (req.body.isDigital) {
+      req.body.weightInKg = undefined;
     }
 
     const product = await Product.findByIdAndUpdate(productId, req.body, {
