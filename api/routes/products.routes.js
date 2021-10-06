@@ -10,10 +10,18 @@ const {
   modifyProduct,
   deleteProduct,
 } = require('../controllers/products.controller');
+const convertStringIntoBool = require('../helpers/convertStringIntoBool');
 
 const router = Router();
 
-router.get('/', getProducts);
+router.get(
+  '/',
+  [
+    query('name').optional().trim(),
+    query('isDigital').optional().customSanitizer(convertStringIntoBool),
+  ],
+  getProducts,
+);
 
 router.get(
   '/:productId',
