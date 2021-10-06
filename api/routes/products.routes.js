@@ -1,4 +1,7 @@
 const { Router } = require('express');
+const { query, body, param } = require('express-validator');
+
+const validateFields = require('../middlewares/validateFields');
 
 const {
   getProducts,
@@ -12,12 +15,33 @@ const router = Router();
 
 router.get('/', getProducts);
 
-router.get('/:productId', getProductById);
+router.get(
+  '/:productId',
+  [
+    param('productId').isMongoId().withMessage('Invalid product ID'),
+    validateFields,
+  ],
+  getProductById,
+);
 
-router.post('/', addProduct);
+router.post('/', [validateFields], addProduct);
 
-router.put('/:productId', modifyProduct);
+router.put(
+  '/:productId',
+  [
+    param('productId').isMongoId().withMessage('Invalid product ID'),
+    validateFields,
+  ],
+  modifyProduct,
+);
 
-router.delete('/:productId', deleteProduct);
+router.delete(
+  '/:productId',
+  [
+    param('productId').isMongoId().withMessage('Invalid product ID'),
+    validateFields,
+  ],
+  deleteProduct,
+);
 
 module.exports = router;
