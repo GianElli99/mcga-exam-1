@@ -21,6 +21,10 @@ npm start
 
 4. You should see a message in the console like `Server running on YOUR_PORT`
 
+## Deployed on Heroku
+
+You can test this app at [Heroku](https://mgca-test-1.herokuapp.com/)
+
 ## API Specification
 
 ### Title
