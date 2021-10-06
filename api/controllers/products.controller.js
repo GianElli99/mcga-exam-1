@@ -25,7 +25,7 @@ const getProductById = async (req = request, res = response) => {
     const { productId } = req.params;
     const product = await Product.findById(productId);
     if (product) {
-      res.json(tecnico);
+      res.json(product);
     } else {
       res.status(404).json({ error: 'Resource not found' });
     }
@@ -56,10 +56,11 @@ const modifyProduct = async (req = request, res = response) => {
   try {
     const { productId } = req.params;
 
-    const nameAlreadyUsed = Product.findOne({
+    const nameAlreadyUsed = await Product.findOne({
       name: req.body.name,
       _id: { $ne: productId },
     });
+
     if (nameAlreadyUsed) {
       return res.status(400).json({
         error: 'A product with the same name already exists.',
@@ -70,7 +71,7 @@ const modifyProduct = async (req = request, res = response) => {
       new: true,
     });
     if (product) {
-      res.json(tecnico);
+      res.json(product);
     } else {
       res.status(404).json({ error: 'Resource not found' });
     }
@@ -82,9 +83,9 @@ const modifyProduct = async (req = request, res = response) => {
 const deleteProduct = async (req = request, res = response) => {
   try {
     const { productId } = req.params;
-    const product = await Product.findOneAndDelete(productId);
+    const product = await Product.findByIdAndDelete(productId);
     if (product) {
-      res.json(tecnico);
+      res.json(product);
     } else {
       res.status(404).json({ error: 'Resource not found' });
     }
