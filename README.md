@@ -182,7 +182,7 @@ The modified product with its `_id` and `__v` fields
 
 ### Delete product
 
-`PUT /products/:productId`
+`DELETE /products/:productId`
 
 #### Path parameters
 
