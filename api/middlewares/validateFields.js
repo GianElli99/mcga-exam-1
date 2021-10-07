@@ -6,7 +6,15 @@ const validateFields = (req = request, res = response, next) => {
   if (errors.isEmpty()) {
     next();
   } else {
-    res.status(400).json(errors);
+    let errorResponse = { errors: [] };
+    let lastError;
+    for (let i = 0; i < errors.errors.length; i++) {
+      if (errors.errors[i].msg !== lastError) {
+        lastError = errors.errors[i].msg;
+        errorResponse.errors.push(lastError);
+      }
+    }
+    res.status(400).json(errorResponse);
   }
 };
 

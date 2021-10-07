@@ -16,7 +16,7 @@ const getProducts = async (req = request, res = response) => {
     const products = await Product.find(filterConditions);
     res.send(products);
   } catch (error) {
-    res.status(500).json({ error: 'An internal server error ocurred.' });
+    res.status(500).json({ errors: ['An internal server error ocurred.'] });
   }
 };
 
@@ -27,10 +27,10 @@ const getProductById = async (req = request, res = response) => {
     if (product) {
       res.json(product);
     } else {
-      res.status(404).json({ error: 'Resource not found' });
+      res.status(404).json({ errors: ['Resource not found'] });
     }
   } catch (error) {
-    res.status(500).json({ error: 'An internal server error ocurred.' });
+    res.status(500).json({ errors: ['An internal server error ocurred.'] });
   }
 };
 
@@ -44,14 +44,14 @@ const addProduct = async (req = request, res = response) => {
     const nameAlreadyUsed = await Product.findOne({ name: product.name });
     if (nameAlreadyUsed) {
       res.status(400).json({
-        error: 'A product with the same name already exists.',
+        errors: ['A product with the same name already exists.'],
       });
     } else {
       await product.save();
       res.status(201).json(product);
     }
   } catch (error) {
-    res.status(500).json({ error: 'An internal server error ocurred.' });
+    res.status(500).json({ errors: ['An internal server error ocurred.'] });
   }
 };
 
@@ -79,10 +79,10 @@ const modifyProduct = async (req = request, res = response) => {
     if (product) {
       res.json(product);
     } else {
-      res.status(404).json({ error: 'Resource not found' });
+      res.status(404).json({ errors: ['Resource not found'] });
     }
   } catch (error) {
-    res.status(500).json({ error: 'An internal server error ocurred.' });
+    res.status(500).json({ errors: ['An internal server error ocurred.'] });
   }
 };
 
@@ -93,10 +93,10 @@ const deleteProduct = async (req = request, res = response) => {
     if (product) {
       res.json(product);
     } else {
-      res.status(404).json({ error: 'Resource not found' });
+      res.status(404).json({ errors: ['Resource not found'] });
     }
   } catch (error) {
-    res.status(500).json({ error: 'An internal server error ocurred.' });
+    res.status(500).json({ errors: ['An internal server error ocurred.'] });
   }
 };
 
