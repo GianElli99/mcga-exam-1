@@ -1,0 +1,24 @@
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+
+const { connectDB } = require('./database/connectDB');
+const productsRouter = require('./routes/products.routes');
+
+const port = process.env.PORT;
+const connectionStringDB = process.env.MONGO_CONNECTION;
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.type('text/plain').send('Server OK');
+});
+
+app.use('/products', productsRouter);
+
+app.listen(port, async () => {
+  console.log(`Server running on ${port}`);
+  await connectDB(connectionStringDB);
+});
