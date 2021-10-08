@@ -15,7 +15,9 @@ const productsValidationChain = () => {
     body('isDigital', 'The isDigital field is invalid').isBoolean({
       strict: true,
     }),
-    body('weightInKg').if(body('isDigital').equals('false')).isNumeric(),
+    body('weightInKg', 'The weight is invalid')
+      .if(body('isDigital').equals('false'))
+      .isNumeric(),
   ];
 };
 
