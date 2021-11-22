@@ -71,6 +71,7 @@ const modifyProduct = async (req = request, res = response) => {
     }
     if (req.body.isDigital) {
       req.body.weightInKg = undefined;
+      req.body.$unset = { weightInKg: 1 };
     }
 
     const product = await Product.findByIdAndUpdate(productId, req.body, {
@@ -82,6 +83,7 @@ const modifyProduct = async (req = request, res = response) => {
       res.status(404).json({ errors: ['Resource not found'] });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({ errors: ['An internal server error ocurred.'] });
   }
 };
