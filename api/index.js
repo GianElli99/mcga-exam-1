@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const { connectDB } = require('./database/connectDB');
@@ -12,11 +13,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.type('text/plain').send('Server OK');
-});
+app.use(express.static(path.resolve(__dirname, '../build')));
 
 app.use('/products', productsRouter);
+
+app.get('*', (_req, res) => {
+  res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
+});
 
 app.listen(port, async () => {
   console.log(`Server running on ${port}`);
