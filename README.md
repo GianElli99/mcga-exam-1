@@ -29,7 +29,7 @@ You can test this app at [Heroku](https://mgca-test-1.herokuapp.com/)
 
 ### Get products
 
-`GET /products/`
+`GET /api/products/`
 
 #### Query parameters
 
@@ -73,7 +73,7 @@ A list of all the products that match the filters, if no query params are provid
 
 ### Get product by id
 
-`GET /products/:productId`
+`GET /api/products/:productId`
 
 #### Path parameters
 
@@ -104,7 +104,7 @@ A product
 
 ### Add product
 
-`POST /products/`
+`POST /api/products/`
 
 #### Request body
 
@@ -140,7 +140,7 @@ The added product with its `_id` and `__v` fields
 
 ### Modify product
 
-`PUT /products/:productId`
+`PUT /api/products/:productId`
 
 #### Path parameters
 
@@ -182,7 +182,7 @@ The modified product with its `_id` and `__v` fields
 
 ### Delete product
 
-`DELETE /products/:productId`
+`DELETE /api/products/:productId`
 
 #### Path parameters
 
