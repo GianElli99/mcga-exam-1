@@ -66,7 +66,7 @@ const modifyProduct = async (req = request, res = response) => {
 
     if (nameAlreadyUsed) {
       return res.status(400).json({
-        error: 'A product with the same name already exists.',
+        errors: ['A product with the same name already exists.'],
       });
     }
     if (req.body.isDigital) {
