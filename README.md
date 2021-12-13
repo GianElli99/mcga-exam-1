@@ -1,14 +1,18 @@
 # Products API
 
-This project consists of an API of products made with Nodejs. It's my answer to an exam for the "Modelos computacionales de gestión administrativa" subject.
+This project consists of an API of products made with Nodejs.
+
+## Deployed on Heroku
+
+You can test this app at [Heroku](https://mern-products-backend.herokuapp.com/)
 
 ## How to run this project
 
 1. Clone the project
 
 ```sh
-git clone https://github.com/GianElli99/mcga-exam-1.git
-cd mcga-exam-1
+git clone https://github.com/GianElli99/mern-products-backend.git
+cd mern-products-backend
 ```
 
 2. Create and config your environment variables in a `.env` file, you can use the `.env.example` as a guide
@@ -20,10 +24,6 @@ npm start
 ```
 
 4. You should see a message in the console like `Server running on YOUR_PORT`
-
-## Deployed on Heroku
-
-You can test this app at [Heroku](https://mgca-test-1.herokuapp.com/)
 
 ## API Specification
 
@@ -236,4 +236,4 @@ All unsuccessuful request will have the same response structure
 
 ## License
 
-[MIT](https://github.com/GianElli99/mcga-exam-1/blob/main/README.md)
+[MIT](https://github.com/GianElli99/mern-products-backend/blob/main/LICENSE)
