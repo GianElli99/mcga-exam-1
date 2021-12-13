@@ -17,9 +17,9 @@ app.use(express.static(path.resolve(__dirname, '../build')));
 
 app.use('/api/products', productsRouter);
 
-app.get('*', (_req, res) => {
-  res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
-});
+// app.get('*', (_req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
+// });
 
 app.listen(port, async () => {
   console.log(`Server running on ${port}`);
