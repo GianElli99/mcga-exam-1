@@ -1,7 +1,7 @@
 {
-  "name": "mcga-exam-1",
+  "name": "mern-products-backend",
   "version": "1.0.0",
-  "description": "First MCGA exam solution",
+  "description": "Backend for Products CRUD",
   "main": "./api/index.js",
   "scripts": {
     "start": "node api/index.js",
